@@ -2,7 +2,7 @@
 # Root redirects
 / /main.html 200
 
-# Page redirects
+# Page redirects - Force HTML rendering
 /sondage /pages/sondage.php 200
 /merci /pages/merci.php 200
 /create-database /pages/create_database.php 200
@@ -17,3 +17,6 @@
 
 # Admin redirects
 /admin* /pages/create_database.php 302
+
+# SPA fallback for client-side routing
+/* /index.php 200
