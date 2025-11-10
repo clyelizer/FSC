@@ -1,21 +1,24 @@
 export async function onRequest(context) {
   const { request, env } = context;
 
+  // Set CORS headers for all responses
+  const corsHeaders = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type',
+  };
+
   // Handle OPTIONS for CORS preflight
   if (request.method === 'OPTIONS') {
     return new Response(null, {
       status: 200,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type',
-      }
+      headers: corsHeaders
     });
   }
 
   // Handle GET requests for testing
   if (request.method === 'GET') {
-    return new Response(`
+    const html = `
       <!DOCTYPE html>
       <html>
       <head><title>Test Survey API</title></head>
@@ -25,26 +28,63 @@ export async function onRequest(context) {
         <p>Utilisez le formulaire sur <a href="/sondage.html">/sondage.html</a></p>
         <p>Status: 200 OK - API fonctionnelle</p>
         <p>Base de données: ${env.DB ? 'Connectée' : 'Non configurée'}</p>
+        <p>Méthode actuelle: ${request.method}</p>
       </body>
       </html>
-    `, {
+    `;
+
+    return new Response(html, {
+      status: 200,
       headers: {
         'Content-Type': 'text/html',
-        'Access-Control-Allow-Origin': '*'
+        ...corsHeaders
       }
     });
   }
 
-  // Only handle POST requests for form submission
-  if (request.method !== 'POST') {
-    return new Response('Method not allowed - Use POST for form submission', {
-      status: 405,
-      headers: {
-        'Content-Type': 'text/plain',
-        'Access-Control-Allow-Origin': '*'
-      }
-    });
+  // Handle POST requests for form submission
+  if (request.method === 'POST') {
+    try {
+      // Simple response for testing
+      const response = new Response(JSON.stringify({
+        success: true,
+        message: 'Formulaire reçu avec succès',
+        timestamp: new Date().toISOString()
+      }), {
+        status: 200,
+        headers: {
+          'Content-Type': 'application/json',
+          ...corsHeaders
+        }
+      });
+
+      return response;
+    } catch (error) {
+      return new Response(JSON.stringify({
+        success: false,
+        error: error.message
+      }), {
+        status: 500,
+        headers: {
+          'Content-Type': 'application/json',
+          ...corsHeaders
+        }
+      });
+    }
   }
+
+  // Method not allowed
+  return new Response(JSON.stringify({
+    error: 'Method not allowed',
+    allowed: ['GET', 'POST', 'OPTIONS'],
+    received: request.method
+  }), {
+    status: 405,
+    headers: {
+      'Content-Type': 'application/json',
+      ...corsHeaders
+    }
+  });
 
   try {
     // Parse form data
