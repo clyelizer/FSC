@@ -1,0 +1,19 @@
+# Redirects for clean URLs (Cloudflare Pages)
+# Root redirects
+/ /main.html 200
+
+# Page redirects
+/sondage /pages/sondage.php 200
+/merci /pages/merci.php 200
+/create-database /pages/create_database.php 200
+
+# API redirects for serverless functions
+/api/survey /.functions/_middleware.js 200
+
+# Legacy redirects (old URLs to new)
+/pages/sondage.html /pages/sondage.php 302
+/pages/merci.html /pages/merci.php 302
+/main.html / 302
+
+# Admin redirects
+/admin* /pages/create_database.php 302

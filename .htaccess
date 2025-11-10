@@ -1,0 +1,40 @@
+RewriteEngine On
+
+# Forcer HTTPS en production
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP_HOST} !^localhost [NC]
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Rediriger la racine vers index.php
+RewriteRule ^$ index.php [L]
+
+# Rediriger les URLs propres vers les fichiers PHP
+RewriteRule ^sondage$ pages/sondage.php [L]
+RewriteRule ^merci$ pages/merci.php [L]
+RewriteRule ^create-database$ pages/create_database.php [L]
+
+# Rediriger les anciennes URLs avec extension
+RewriteRule ^pages/sondage\.html$ pages/sondage.php [R=301,L]
+RewriteRule ^pages/merci\.html$ pages/merci.php [R=301,L]
+RewriteRule ^main\.html$ / [R=301,L]
+
+# Protéger les fichiers sensibles
+RewriteRule ^(\.env|composer\.lock|vendor/.*)$ - [F,L]
+RewriteRule ^pages/(create_database|process_survey)\.php$ - [F,L]
+
+# Cache des ressources statiques
+<FilesMatch "\.(css|js|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$">
+    Header set Cache-Control "max-age=31536000, public"
+</FilesMatch>
+
+# Sécurité
+<Files *.php>
+    Header always set X-Content-Type-Options nosniff
+    Header always set X-Frame-Options DENY
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</FilesMatch>
+
+# Gestion des erreurs
+ErrorDocument 404 /404.php
+ErrorDocument 500 /500.php

@@ -1,0 +1,52 @@
+# Environnement
+.env
+.env.local
+.env.*.local
+
+# Base de données
+*.db
+*.sqlite
+*.sqlite3
+pages/fsc_survey.db
+
+# Dépendances PHP
+vendor/
+composer.lock
+
+# Node.js (si utilisé plus tard)
+node_modules/
+package-lock.json
+
+# Cache et logs
+.cache/
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+*~
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*.tmp
+
+# Temp files
+tmp/
+temp/
+tmp_*/
+
+# Build
+dist/
+build/
+
+# Cloudflare
+.cloudflare/
+
+# Backup
+*.bak
+*.backup
+*~
