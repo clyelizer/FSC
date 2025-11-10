@@ -1,9 +1,31 @@
 export async function onRequest(context) {
   const { request, env } = context;
 
-  // Only handle POST requests
+  // Handle both GET and POST requests
+  if (request.method === 'GET') {
+    // Return a simple HTML form for testing
+    return new Response(`
+      <!DOCTYPE html>
+      <html>
+      <head><title>Test Survey API</title></head>
+      <body>
+        <h1>API Sondage FSC - Test</h1>
+        <p>Cette API accepte les requêtes POST avec des données de formulaire.</p>
+        <p>Utilisez le formulaire sur <a href="/sondage.html">/sondage.html</a></p>
+        <p>Status: 200 OK - API fonctionnelle</p>
+      </body>
+      </html>
+    `, {
+      headers: { 'Content-Type': 'text/html' }
+    });
+  }
+
+  // Only handle POST requests for form submission
   if (request.method !== 'POST') {
-    return new Response('Method not allowed', { status: 405 });
+    return new Response('Method not allowed - Use POST for form submission or GET for testing', {
+      status: 405,
+      headers: { 'Content-Type': 'text/plain' }
+    });
   }
 
   try {
