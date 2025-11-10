@@ -1,7 +1,7 @@
 /*
   Access-Control-Allow-Origin: *
   Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
-  Access-Control-Allow-Headers: *
+  Access-Control-Allow-Headers: Content-Type, Authorization
 
 # Security headers
 /*
@@ -14,6 +14,12 @@
 # Force content type for PHP files (prevent download)
 /pages/*.php
   Content-Type: text/html; charset=UTF-8
+
+# API endpoints CORS
+/api/*
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Methods: GET, POST, OPTIONS
+  Access-Control-Allow-Headers: Content-Type, Authorization
 
 # Cache static assets
 /assets/*

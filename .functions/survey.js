@@ -1,9 +1,20 @@
 export async function onRequest(context) {
   const { request, env } = context;
 
-  // Handle both GET and POST requests
+  // Handle OPTIONS for CORS preflight
+  if (request.method === 'OPTIONS') {
+    return new Response(null, {
+      status: 200,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type',
+      }
+    });
+  }
+
+  // Handle GET requests for testing
   if (request.method === 'GET') {
-    // Return a simple HTML form for testing
     return new Response(`
       <!DOCTYPE html>
       <html>
@@ -13,18 +24,25 @@ export async function onRequest(context) {
         <p>Cette API accepte les requêtes POST avec des données de formulaire.</p>
         <p>Utilisez le formulaire sur <a href="/sondage.html">/sondage.html</a></p>
         <p>Status: 200 OK - API fonctionnelle</p>
+        <p>Base de données: ${env.DB ? 'Connectée' : 'Non configurée'}</p>
       </body>
       </html>
     `, {
-      headers: { 'Content-Type': 'text/html' }
+      headers: {
+        'Content-Type': 'text/html',
+        'Access-Control-Allow-Origin': '*'
+      }
     });
   }
 
   // Only handle POST requests for form submission
   if (request.method !== 'POST') {
-    return new Response('Method not allowed - Use POST for form submission or GET for testing', {
+    return new Response('Method not allowed - Use POST for form submission', {
       status: 405,
-      headers: { 'Content-Type': 'text/plain' }
+      headers: {
+        'Content-Type': 'text/plain',
+        'Access-Control-Allow-Origin': '*'
+      }
     });
   }
 
