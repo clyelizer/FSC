@@ -1,58 +1,105 @@
-<?php
-/**
- * Point d'entrée principal du site FSC
- * Affiche directement le contenu HTML pour Cloudflare Pages
- */
-
-// Forcer le type de contenu HTML
-header('Content-Type: text/html; charset=UTF-8');
-
-// Inclure le contenu HTML directement
-?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FSC - Formation Suivi Conseil</title>
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Header -->
     <header class="header">
-        <div class="container">
-            <div class="logo">FSC</div>
-            <nav class="navbar">
-                <ul>
+        <nav class="nav">
+            <div class="nav-container">
+                <div class="logo">
+                    <span class="logo-text">FSC</span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#accueil">Accueil</a></li>
                     <li><a href="#services">Services</a></li>
                     <li><a href="#formation">Formation</a></li>
                     <li><a href="#methodologie">Méthodologie</a></li>
-                    <li><a href="pages/sondage.php">Sondage</a></li>
+                    <li><a href="#sondage">Sondage</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
-            </nav>
-        </div>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero-section" style="background: linear-gradient(rgba(37, 99, 235, 0.9), rgba(37, 99, 235, 0.8)), url('images/hero-bg.jpg'); background-size: cover; background-position: center;">
-        <div class="container">
+    <section id="accueil" class="hero">
+        <div class="hero-container">
             <div class="hero-content">
-                <h2>FSC - Formation Suivi Conseil</h2>
-                <p class="subtitle">Votre partenaire pour la sécurisation numérique, l'optimisation avec l'IA et la formation en ligne</p>
-                <div class="cta-group">
+                <h1 class="hero-title">
+                    Formation <span class="highlight">Suivi</span> Conseil
+                </h1>
+                <p class="hero-subtitle">
+                    Votre partenaire pour la sécurisation numérique, l'optimisation avec l'IA et la formation en ligne
+                </p>
+                <div class="hero-buttons">
                     <a href="#services" class="btn btn-primary">Découvrir nos services</a>
-                    <a href="#contact" class="btn btn-secondary">Nous contacter</a>
+                    <a href="#sondage" class="btn btn-secondary">Participer au sondage</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-illustration">
+                    <div class="floating-element elem-1">🚀</div>
+                    <div class="floating-element elem-2">💡</div>
+                    <div class="floating-element elem-3">🎯</div>
+                    <div class="floating-element elem-4">📊</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Sondage Section -->
-    <section class="sondage-highlight-section">
+    <!-- Services Section -->
+    <section id="services" class="services">
         <div class="container">
-            <div class="sondage-highlight">
-                <div class="sondage-content">
+            <div class="section-header">
+                <h2>Nos Services</h2>
+                <p>Nous accompagnons votre entreprise dans sa transformation digitale</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🔒</div>
+                    <h3>Sécurisation Numérique</h3>
+                    <p>Conseils et mise en place des meilleures pratiques pour protéger vos systèmes informatiques.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🤖</div>
+                    <h3>Outils d'IA</h3>
+                    <p>Intégration d'outils d'intelligence artificielle pour booster votre productivité.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📚</div>
+                    <h3>Vulgarisation des Technologies</h3>
+                    <p>Rendre accessibles les outils d'IA, de sécurisation et d'automatisation à tous.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💻</div>
+                    <h3>Formation en Ligne</h3>
+                    <p>Apprentissage complet dans le domaine informatique, 100% en ligne.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">👥</div>
+                    <h3>Accompagnement</h3>
+                    <p>Suivi personnalisé et conseils adaptés à vos besoins.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sondage Highlight Section -->
+    <section id="sondage" class="sondage-highlight">
+        <div class="container">
+            <div class="sondage-content">
+                <div class="sondage-text">
                     <h2>🗳️ Sondage en Cours</h2>
                     <h3>Faites Évoluer Nos Services</h3>
                     <p>Aidez-nous à adapter nos objectifs pour mieux répondre aux besoins réels des particuliers et entreprises. Votre avis compte !</p>
@@ -70,87 +117,68 @@ header('Content-Type: text/html; charset=UTF-8');
                             <span class="stat-label">Satisfaction</span>
                         </div>
                     </div>
-                    <a href="pages/sondage.php" class="btn btn-primary btn-huge">Participer au Sondage</a>
+                    <a href="sondage.html" class="btn btn-primary btn-large">Participer au Sondage</a>
                 </div>
                 <div class="sondage-visual">
-                    <div class="survey-icon">📊</div>
-                    <div class="floating-elements">
-                        <div class="floating-element">💡</div>
-                        <div class="floating-element">🎯</div>
-                        <div class="floating-element">📈</div>
+                    <div class="survey-chart">
+                        <div class="chart-bar" style="height: 80%"></div>
+                        <div class="chart-bar" style="height: 65%"></div>
+                        <div class="chart-bar" style="height: 90%"></div>
+                        <div class="chart-bar" style="height: 75%"></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="services-section">
-        <div class="container">
-            <h2 class="section-title">Nos Services</h2>
-            <p class="section-description">Nous accompagnons votre entreprise dans sa transformation digitale</p>
-            <div class="service-cards">
-                <div class="card">
-                    <img src="images/security.jpg" alt="Sécurisation numérique" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px 8px 0 0; margin-bottom: 20px;">
-                    <h3>Sécurisation Numérique</h3>
-                    <p>Conseils et mise en place des meilleures pratiques pour protéger vos systèmes informatiques.</p>
-                </div>
-                <div class="card">
-                    <img src="images/ai.jpg" alt="Intelligence artificielle" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px 8px 0 0; margin-bottom: 20px;">
-                    <h3>Outils d'IA</h3>
-                    <p>Intégration d'outils d'intelligence artificielle pour booster votre productivité.</p>
-                </div>
-                <div class="card">
-                    <img src="images/education.jpg" alt="Formation et vulgarisation" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px 8px 0 0; margin-bottom: 20px;">
-                    <h3>Vulgarisation des Technologies</h3>
-                    <p>Rendre accessibles les outils d'IA, de sécurisation et d'automatisation à tous.</p>
-                </div>
-                <div class="card">
-                    <img src="images/education.jpg" alt="Formation en ligne" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px 8px 0 0; margin-bottom: 20px;">
-                    <h3>Formation en Ligne</h3>
-                    <p>Apprentissage complet dans le domaine informatique, 100% en ligne.</p>
-                </div>
-                <div class="card">
-                    <img src="images/consulting.jpg" alt="Accompagnement et conseil" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px 8px 0 0; margin-bottom: 20px;">
-                    <h3>Accompagnement</h3>
-                    <p>Suivi personnalisé et conseils adaptés à vos besoins.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Formation Section -->
-    <section id="formation" class="formation-section">
+    <section id="formation" class="formation">
         <div class="container">
-            <div class="content-wrapper">
-                <h2 class="section-title">Formation en Informatique</h2>
-                <p>Notre formation complète vous permet d'acquérir toutes les compétences nécessaires dans le domaine informatique, entièrement en ligne.</p>
-                <ul>
-                    <li>Cours interactifs et accessibles 24/7</li>
-                    <li>Suivi personnalisé par nos experts</li>
-                    <li>Certifications reconnues</li>
-                    <li>Communauté d'apprenants active</li>
-                </ul>
-                <a href="#contact" class="btn btn-primary btn-huge">S'inscrire à la formation</a>
+            <div class="formation-content">
+                <div class="formation-text">
+                    <h2>Formation en Informatique</h2>
+                    <p>Notre formation complète vous permet d'acquérir toutes les compétences nécessaires dans le domaine informatique, entièrement en ligne.</p>
+                    <ul class="formation-features">
+                        <li>✓ Cours interactifs et accessibles 24/7</li>
+                        <li>✓ Suivi personnalisé par nos experts</li>
+                        <li>✓ Certifications reconnues</li>
+                        <li>✓ Communauté d'apprenants active</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary">S'inscrire à la formation</a>
+                </div>
+                <div class="formation-visual">
+                    <div class="learning-illustration">
+                        <div class="book">📚</div>
+                        <div class="computer">💻</div>
+                        <div class="certificate">🏆</div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Méthodologie Section -->
-    <section id="methodologie" class="methodologie-section">
+    <section id="methodologie" class="methodologie">
         <div class="container">
-            <h2 class="section-title">Notre Méthodologie FSC</h2>
-            <p class="section-description">Formation, Suivi, Conseil : une approche complète pour votre réussite</p>
-            <div class="steps">
+            <div class="section-header">
+                <h2>Notre Méthodologie FSC</h2>
+                <p>Formation, Suivi, Conseil : une approche complète pour votre réussite</p>
+            </div>
+            <div class="methodologie-steps">
                 <div class="step">
+                    <div class="step-number">1</div>
                     <h3>Formation</h3>
                     <p>Apprentissage théorique et pratique adapté à vos besoins.</p>
                 </div>
+                <div class="step-connector"></div>
                 <div class="step">
+                    <div class="step-number">2</div>
                     <h3>Suivi</h3>
                     <p>Accompagnement continu pour assurer votre progression.</p>
                 </div>
+                <div class="step-connector"></div>
                 <div class="step">
+                    <div class="step-number">3</div>
                     <h3>Conseil</h3>
                     <p>Conseils stratégiques pour optimiser vos projets.</p>
                 </div>
@@ -158,21 +186,25 @@ header('Content-Type: text/html; charset=UTF-8');
         </div>
     </section>
 
-    <!-- CTA Final Section -->
-    <section class="cta-final-section">
+    <!-- CTA Section -->
+    <section class="cta">
         <div class="container">
-            <h2>Prêt à transformer votre entreprise ?</h2>
-            <p>Contactez-nous dès aujourd'hui pour discuter de vos besoins.</p>
-            <a href="#contact" class="btn btn-huge">Commencer maintenant</a>
+            <div class="cta-content">
+                <h2>Prêt à transformer votre entreprise ?</h2>
+                <p>Contactez-nous dès aujourd'hui pour discuter de vos besoins.</p>
+                <a href="#contact" class="btn btn-primary btn-large">Commencer maintenant</a>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer id="contact" class="footer">
         <div class="container">
-            <div class="footer-grid">
+            <div class="footer-content">
                 <div class="footer-brand">
-                    <div class="logo">FSC</div>
+                    <div class="logo">
+                        <span class="logo-text">FSC</span>
+                    </div>
                     <p>Formation Suivi Conseil - Votre partenaire digital</p>
                 </div>
                 <div class="footer-links">
@@ -181,20 +213,22 @@ header('Content-Type: text/html; charset=UTF-8');
                         <li><a href="#services">Services</a></li>
                         <li><a href="#formation">Formation</a></li>
                         <li><a href="#methodologie">Méthodologie</a></li>
-                        <li><a href="pages/sondage.php">Sondage</a></li>
+                        <li><a href="sondage.html">Sondage</a></li>
                     </ul>
                 </div>
                 <div class="footer-contact">
                     <h4>Contact</h4>
-                    <p>Email: contact@fsc.com</p>
-                    <p>Téléphone: +212 6 XX XX XX XX</p>
-                    <p>Adresse: Casablanca, Maroc</p>
+                    <p>📧 contact@fsc.com</p>
+                    <p>📱 +212 6 XX XX XX XX</p>
+                    <p>📍 Casablanca, Maroc</p>
                 </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 FSC - Formation Suivi Conseil. Tous droits réservés.</p>
             </div>
         </div>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
-<?php
-// Fin du fichier PHP
-?>

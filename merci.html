@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merci - FSC</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <div class="logo">
+                    <span class="logo-text">FSC</span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html#accueil">Accueil</a></li>
+                    <li><a href="index.html#services">Services</a></li>
+                    <li><a href="index.html#formation">Formation</a></li>
+                    <li><a href="index.html#methodologie">Méthodologie</a></li>
+                    <li><a href="index.html#sondage">Sondage</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Success Section -->
+    <section class="success-section">
+        <div class="container">
+            <div class="success-content">
+                <div class="success-icon">
+                    <span class="checkmark">✓</span>
+                </div>
+                <h1>Merci pour votre participation !</h1>
+                <p class="success-message">
+                    Votre enquête a été envoyée avec succès. Vos réponses sont précieuses pour nous aider à mieux comprendre les besoins des étudiants et professionnels.
+                </p>
+
+                <div class="success-details">
+                    <div class="detail-card">
+                        <div class="detail-icon">📧</div>
+                        <h3>Email de confirmation</h3>
+                        <p>Un email de remerciement vous a été envoyé avec plus de détails sur la suite du processus.</p>
+                    </div>
+                    <div class="detail-card">
+                        <div class="detail-icon">📊</div>
+                        <h3>Analyse des données</h3>
+                        <p>Nous analyserons votre contribution avec celles des autres participants pour améliorer nos services.</p>
+                    </div>
+                    <div class="detail-card">
+                        <div class="detail-icon">🎯</div>
+                        <h3>Résultats</h3>
+                        <p>Les résultats de cette enquête seront publiés et utilisés pour adapter nos formations.</p>
+                    </div>
+                </div>
+
+                <div class="success-actions">
+                    <a href="index.html" class="btn btn-primary">Retour à l'accueil</a>
+                    <a href="sondage.html" class="btn btn-secondary">Voir une autre enquête</a>
+                </div>
+
+                <div class="social-share">
+                    <p>Partagez cette initiative :</p>
+                    <div class="share-buttons">
+                        <button class="share-btn" onclick="shareOnFacebook()">📘 Facebook</button>
+                        <button class="share-btn" onclick="shareOnTwitter()">🐦 Twitter</button>
+                        <button class="share-btn" onclick="shareOnLinkedIn()">💼 LinkedIn</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <span class="logo-text">FSC</span>
+                    </div>
+                    <p>Formation Suivi Conseil - Votre partenaire digital</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Liens utiles</h4>
+                    <ul>
+                        <li><a href="index.html#services">Services</a></li>
+                        <li><a href="index.html#formation">Formation</a></li>
+                        <li><a href="index.html#methodologie">Méthodologie</a></li>
+                        <li><a href="sondage.html">Sondage</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact</h4>
+                    <p>📧 contact@fsc.com</p>
+                    <p>📱 +212 6 XX XX XX XX</p>
+                    <p>📍 Casablanca, Maroc</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 FSC - Formation Suivi Conseil. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Social sharing functions
+        function shareOnFacebook() {
+            const url = encodeURIComponent(window.location.origin);
+            const text = encodeURIComponent("J'ai participé à l'enquête FSC sur les technologies et l'avenir professionnel ! Participez aussi : ");
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${text}`, '_blank');
+        }
+
+        function shareOnTwitter() {
+            const text = encodeURIComponent("J'ai participé à l'enquête FSC sur les technologies et l'avenir professionnel ! Participez aussi : ");
+            const url = encodeURIComponent(window.location.origin);
+            window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
+        }
+
+        function shareOnLinkedIn() {
+            const url = encodeURIComponent(window.location.origin);
+            const title = encodeURIComponent("Enquête FSC - Technologies & Avenir Professionnel");
+            const summary = encodeURIComponent("J'ai participé à l'enquête FSC sur les besoins en formation et technologies. Vos réponses comptent !");
+            window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}&title=${title}&summary=${summary}`, '_blank');
+        }
+
+        // Check for success parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('success') === '1') {
+            // Show success animation
+            const checkmark = document.querySelector('.checkmark');
+            if (checkmark) {
+                checkmark.style.animation = 'bounce 1s ease-in-out';
+            }
+        }
+    </script>
+</body>
+</html>
